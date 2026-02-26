@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/napi-rs/package-template.git"
+    "url": "git+https://github.com/apache/arrow-adbc.git",
+    "directory": "node/native"
   },
   "license": "Apache-2.0",
   "browser": "browser.js",
@@ -49,6 +50,7 @@
     "bench": "node --import @oxc-node/core/register benchmark/bench.ts",
     "build": "napi build --platform --release && mv index.js binding.js && mv index.d.ts binding.d.ts && tsc",
     "build:debug": "napi build --platform && mv index.js binding.js && mv index.d.ts binding.d.ts && tsc",
+    "build:ts": "tsc",
     "build:driver": "../../ci/scripts/node_build.sh $(pwd)/build",
     "format": "run-p format:prettier format:rs format:toml",
     "format:prettier": "prettier . -w",

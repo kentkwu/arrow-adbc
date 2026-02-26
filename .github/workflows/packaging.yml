@@ -1202,7 +1202,7 @@ jobs:
 
       - name: Build JS
         working-directory: adbc/node/native
-        run: npm run build
+        run: npm run build:ts
 
       - name: Download bindings
         uses: actions/download-artifact@v6
