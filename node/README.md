@@ -23,7 +23,7 @@ This directory contains the Node.js implementation of the [Arrow Database Connec
 
 ## Project Structure
 
-- **[`native`](./native)**: The primary package (`adbc-node`). This is a Node.js native addon (using [N-API](https://nodejs.org/api/n-api.html)) built with Rust. It provides the ADBC Driver Manager interface.
+- **[`native`](./native)**: The primary package (`adbc-driver-manager`). This is a Node.js native addon (using [N-API](https://nodejs.org/api/n-api.html)) built with Rust. It provides the ADBC Driver Manager interface.
 - **[`core`](./core)**: Internal Rust crate containing shared logic and type definitions used by the native bindings.
 
 ## Getting Started

@@ -17,6 +17,6 @@
   under the License.
 -->
 
-# `adbc-node-linux-x64-gnu`
+# `adbc-driver-manager-linux-x64-gnu`
 
-This is the **x86_64-unknown-linux-gnu** binary for `adbc-node`
+This is the **x86_64-unknown-linux-gnu** binary for `adbc-driver-manager`

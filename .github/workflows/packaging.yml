@@ -1287,7 +1287,7 @@ jobs:
             -exec mv '{}' upload-staging \;
 
           # Handle Node.js packages (in tarball form)
-          find ./release-artifacts/ -name 'adbc-node-*.tgz' -exec mv '{}' upload-staging \;
+          find ./release-artifacts/ -name 'adbc-driver-manager-*.tgz' -exec mv '{}' upload-staging \;
 
           UPLOAD=$(find upload-staging -type f | sort | uniq)
 

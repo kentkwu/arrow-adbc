@@ -19,7 +19,7 @@ name: Node.js Binding
 
 env:
   DEBUG: napi:*
-  APP_NAME: adbc-node
+  APP_NAME: adbc-driver-manager
   MACOSX_DEPLOYMENT_TARGET: '10.13'
   CARGO_INCREMENTAL: '1'
 

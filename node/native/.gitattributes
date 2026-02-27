@@ -29,7 +29,7 @@
 # Generated codes
 index.js                         linguist-detectable=false
 index.d.ts                       linguist-detectable=false
-adbc-node.wasi-browser.js linguist-detectable=false
-adbc-node.wasi.cjs        linguist-detectable=false
+adbc-driver-manager.wasi-browser.js linguist-detectable=false
+adbc-driver-manager.wasi.cjs        linguist-detectable=false
 wasi-worker-browser.mjs          linguist-detectable=false
 wasi-worker.mjs                  linguist-detectable=false

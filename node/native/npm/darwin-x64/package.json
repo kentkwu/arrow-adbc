@@ -1,12 +1,12 @@
 {
-  "name": "adbc-node-darwin-x64",
+  "name": "adbc-driver-manager-darwin-x64",
   "version": "0.0.1",
   "cpu": [
     "x64"
   ],
-  "main": "adbc-node.darwin-x64.node",
+  "main": "adbc-driver-manager.darwin-x64.node",
   "files": [
-    "adbc-node.darwin-x64.node"
+    "adbc-driver-manager.darwin-x64.node"
   ],
   "description": "Node.js ADBC Driver Manager",
   "keywords": [

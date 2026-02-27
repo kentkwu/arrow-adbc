@@ -17,6 +17,6 @@
   under the License.
 -->
 
-# `adbc-node-darwin-arm64`
+# `adbc-driver-manager-darwin-arm64`
 
-This is the **aarch64-apple-darwin** binary for `adbc-node`
+This is the **aarch64-apple-darwin** binary for `adbc-driver-manager`

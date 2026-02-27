@@ -1,12 +1,12 @@
 {
-  "name": "adbc-node-win32-x64-msvc",
+  "name": "adbc-driver-manager-win32-x64-msvc",
   "version": "0.0.1",
   "cpu": [
     "x64"
   ],
-  "main": "adbc-node.win32-x64-msvc.node",
+  "main": "adbc-driver-manager.win32-x64-msvc.node",
   "files": [
-    "adbc-node.win32-x64-msvc.node"
+    "adbc-driver-manager.win32-x64-msvc.node"
   ],
   "description": "Node.js ADBC Driver Manager",
   "keywords": [

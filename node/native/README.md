@@ -26,13 +26,13 @@ This package provides Node.js bindings for the [Arrow Database Connectivity (ADB
 ## Installation
 
 ```bash
-npm install adbc-node
+npm install adbc-driver-manager
 ```
 
 ## Usage
 
 ```typescript
-import { AdbcDatabase } from 'adbc-node';
+import { AdbcDatabase } from 'adbc-driver-manager';
 
 // 1. Initialize the Database with a path to an ADBC driver library
 //    (e.g., SQLite, PostgreSQL driver shared object/DLL)

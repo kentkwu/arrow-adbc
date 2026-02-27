@@ -1,5 +1,5 @@
 {
-  "name": "adbc-node-workspace",
+  "name": "adbc-driver-manager-workspace",
   "private": true,
   "workspaces": [
     "native",

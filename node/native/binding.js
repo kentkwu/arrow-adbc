@@ -70,13 +70,13 @@ function requireNative() {
   } else if (process.platform === 'android') {
     if (process.arch === 'arm64') {
       try {
-        return require('./adbc-node.android-arm64.node')
+        return require('./adbc-driver-manager.android-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-android-arm64')
-        const bindingPackageVersion = require('adbc-node-android-arm64/package.json').version
+        const binding = require('adbc-driver-manager-android-arm64')
+        const bindingPackageVersion = require('adbc-driver-manager-android-arm64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -86,13 +86,13 @@ function requireNative() {
       }
     } else if (process.arch === 'arm') {
       try {
-        return require('./adbc-node.android-arm-eabi.node')
+        return require('./adbc-driver-manager.android-arm-eabi.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-android-arm-eabi')
-        const bindingPackageVersion = require('adbc-node-android-arm-eabi/package.json').version
+        const binding = require('adbc-driver-manager-android-arm-eabi')
+        const bindingPackageVersion = require('adbc-driver-manager-android-arm-eabi/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -107,13 +107,13 @@ function requireNative() {
     if (process.arch === 'x64') {
       if (process.config?.variables?.shlib_suffix === 'dll.a' || process.config?.variables?.node_target_type === 'shared_library') {
         try {
-        return require('./adbc-node.win32-x64-gnu.node')
+        return require('./adbc-driver-manager.win32-x64-gnu.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-win32-x64-gnu')
-        const bindingPackageVersion = require('adbc-node-win32-x64-gnu/package.json').version
+        const binding = require('adbc-driver-manager-win32-x64-gnu')
+        const bindingPackageVersion = require('adbc-driver-manager-win32-x64-gnu/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -123,13 +123,13 @@ function requireNative() {
       }
       } else {
         try {
-        return require('./adbc-node.win32-x64-msvc.node')
+        return require('./adbc-driver-manager.win32-x64-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-win32-x64-msvc')
-        const bindingPackageVersion = require('adbc-node-win32-x64-msvc/package.json').version
+        const binding = require('adbc-driver-manager-win32-x64-msvc')
+        const bindingPackageVersion = require('adbc-driver-manager-win32-x64-msvc/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -140,13 +140,13 @@ function requireNative() {
       }
     } else if (process.arch === 'ia32') {
       try {
-        return require('./adbc-node.win32-ia32-msvc.node')
+        return require('./adbc-driver-manager.win32-ia32-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-win32-ia32-msvc')
-        const bindingPackageVersion = require('adbc-node-win32-ia32-msvc/package.json').version
+        const binding = require('adbc-driver-manager-win32-ia32-msvc')
+        const bindingPackageVersion = require('adbc-driver-manager-win32-ia32-msvc/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -156,13 +156,13 @@ function requireNative() {
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./adbc-node.win32-arm64-msvc.node')
+        return require('./adbc-driver-manager.win32-arm64-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-win32-arm64-msvc')
-        const bindingPackageVersion = require('adbc-node-win32-arm64-msvc/package.json').version
+        const binding = require('adbc-driver-manager-win32-arm64-msvc')
+        const bindingPackageVersion = require('adbc-driver-manager-win32-arm64-msvc/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -175,13 +175,13 @@ function requireNative() {
     }
   } else if (process.platform === 'darwin') {
     try {
-      return require('./adbc-node.darwin-universal.node')
+      return require('./adbc-driver-manager.darwin-universal.node')
     } catch (e) {
       loadErrors.push(e)
     }
     try {
-      const binding = require('adbc-node-darwin-universal')
-      const bindingPackageVersion = require('adbc-node-darwin-universal/package.json').version
+      const binding = require('adbc-driver-manager-darwin-universal')
+      const bindingPackageVersion = require('adbc-driver-manager-darwin-universal/package.json').version
       if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
         throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
       }
@@ -191,13 +191,13 @@ function requireNative() {
     }
     if (process.arch === 'x64') {
       try {
-        return require('./adbc-node.darwin-x64.node')
+        return require('./adbc-driver-manager.darwin-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-darwin-x64')
-        const bindingPackageVersion = require('adbc-node-darwin-x64/package.json').version
+        const binding = require('adbc-driver-manager-darwin-x64')
+        const bindingPackageVersion = require('adbc-driver-manager-darwin-x64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -207,13 +207,13 @@ function requireNative() {
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./adbc-node.darwin-arm64.node')
+        return require('./adbc-driver-manager.darwin-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-darwin-arm64')
-        const bindingPackageVersion = require('adbc-node-darwin-arm64/package.json').version
+        const binding = require('adbc-driver-manager-darwin-arm64')
+        const bindingPackageVersion = require('adbc-driver-manager-darwin-arm64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -227,13 +227,13 @@ function requireNative() {
   } else if (process.platform === 'freebsd') {
     if (process.arch === 'x64') {
       try {
-        return require('./adbc-node.freebsd-x64.node')
+        return require('./adbc-driver-manager.freebsd-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-freebsd-x64')
-        const bindingPackageVersion = require('adbc-node-freebsd-x64/package.json').version
+        const binding = require('adbc-driver-manager-freebsd-x64')
+        const bindingPackageVersion = require('adbc-driver-manager-freebsd-x64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -243,13 +243,13 @@ function requireNative() {
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./adbc-node.freebsd-arm64.node')
+        return require('./adbc-driver-manager.freebsd-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-freebsd-arm64')
-        const bindingPackageVersion = require('adbc-node-freebsd-arm64/package.json').version
+        const binding = require('adbc-driver-manager-freebsd-arm64')
+        const bindingPackageVersion = require('adbc-driver-manager-freebsd-arm64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -264,13 +264,13 @@ function requireNative() {
     if (process.arch === 'x64') {
       if (isMusl()) {
         try {
-          return require('./adbc-node.linux-x64-musl.node')
+          return require('./adbc-driver-manager.linux-x64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-x64-musl')
-          const bindingPackageVersion = require('adbc-node-linux-x64-musl/package.json').version
+          const binding = require('adbc-driver-manager-linux-x64-musl')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-x64-musl/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -280,13 +280,13 @@ function requireNative() {
         }
       } else {
         try {
-          return require('./adbc-node.linux-x64-gnu.node')
+          return require('./adbc-driver-manager.linux-x64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-x64-gnu')
-          const bindingPackageVersion = require('adbc-node-linux-x64-gnu/package.json').version
+          const binding = require('adbc-driver-manager-linux-x64-gnu')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-x64-gnu/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -298,13 +298,13 @@ function requireNative() {
     } else if (process.arch === 'arm64') {
       if (isMusl()) {
         try {
-          return require('./adbc-node.linux-arm64-musl.node')
+          return require('./adbc-driver-manager.linux-arm64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-arm64-musl')
-          const bindingPackageVersion = require('adbc-node-linux-arm64-musl/package.json').version
+          const binding = require('adbc-driver-manager-linux-arm64-musl')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-arm64-musl/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -314,13 +314,13 @@ function requireNative() {
         }
       } else {
         try {
-          return require('./adbc-node.linux-arm64-gnu.node')
+          return require('./adbc-driver-manager.linux-arm64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-arm64-gnu')
-          const bindingPackageVersion = require('adbc-node-linux-arm64-gnu/package.json').version
+          const binding = require('adbc-driver-manager-linux-arm64-gnu')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-arm64-gnu/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -332,13 +332,13 @@ function requireNative() {
     } else if (process.arch === 'arm') {
       if (isMusl()) {
         try {
-          return require('./adbc-node.linux-arm-musleabihf.node')
+          return require('./adbc-driver-manager.linux-arm-musleabihf.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-arm-musleabihf')
-          const bindingPackageVersion = require('adbc-node-linux-arm-musleabihf/package.json').version
+          const binding = require('adbc-driver-manager-linux-arm-musleabihf')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-arm-musleabihf/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -348,13 +348,13 @@ function requireNative() {
         }
       } else {
         try {
-          return require('./adbc-node.linux-arm-gnueabihf.node')
+          return require('./adbc-driver-manager.linux-arm-gnueabihf.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-arm-gnueabihf')
-          const bindingPackageVersion = require('adbc-node-linux-arm-gnueabihf/package.json').version
+          const binding = require('adbc-driver-manager-linux-arm-gnueabihf')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-arm-gnueabihf/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -366,13 +366,13 @@ function requireNative() {
     } else if (process.arch === 'loong64') {
       if (isMusl()) {
         try {
-          return require('./adbc-node.linux-loong64-musl.node')
+          return require('./adbc-driver-manager.linux-loong64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-loong64-musl')
-          const bindingPackageVersion = require('adbc-node-linux-loong64-musl/package.json').version
+          const binding = require('adbc-driver-manager-linux-loong64-musl')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-loong64-musl/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -382,13 +382,13 @@ function requireNative() {
         }
       } else {
         try {
-          return require('./adbc-node.linux-loong64-gnu.node')
+          return require('./adbc-driver-manager.linux-loong64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-loong64-gnu')
-          const bindingPackageVersion = require('adbc-node-linux-loong64-gnu/package.json').version
+          const binding = require('adbc-driver-manager-linux-loong64-gnu')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-loong64-gnu/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -400,13 +400,13 @@ function requireNative() {
     } else if (process.arch === 'riscv64') {
       if (isMusl()) {
         try {
-          return require('./adbc-node.linux-riscv64-musl.node')
+          return require('./adbc-driver-manager.linux-riscv64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-riscv64-musl')
-          const bindingPackageVersion = require('adbc-node-linux-riscv64-musl/package.json').version
+          const binding = require('adbc-driver-manager-linux-riscv64-musl')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-riscv64-musl/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -416,13 +416,13 @@ function requireNative() {
         }
       } else {
         try {
-          return require('./adbc-node.linux-riscv64-gnu.node')
+          return require('./adbc-driver-manager.linux-riscv64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          const binding = require('adbc-node-linux-riscv64-gnu')
-          const bindingPackageVersion = require('adbc-node-linux-riscv64-gnu/package.json').version
+          const binding = require('adbc-driver-manager-linux-riscv64-gnu')
+          const bindingPackageVersion = require('adbc-driver-manager-linux-riscv64-gnu/package.json').version
           if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
             throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
           }
@@ -433,13 +433,13 @@ function requireNative() {
       }
     } else if (process.arch === 'ppc64') {
       try {
-        return require('./adbc-node.linux-ppc64-gnu.node')
+        return require('./adbc-driver-manager.linux-ppc64-gnu.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-linux-ppc64-gnu')
-        const bindingPackageVersion = require('adbc-node-linux-ppc64-gnu/package.json').version
+        const binding = require('adbc-driver-manager-linux-ppc64-gnu')
+        const bindingPackageVersion = require('adbc-driver-manager-linux-ppc64-gnu/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -449,13 +449,13 @@ function requireNative() {
       }
     } else if (process.arch === 's390x') {
       try {
-        return require('./adbc-node.linux-s390x-gnu.node')
+        return require('./adbc-driver-manager.linux-s390x-gnu.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-linux-s390x-gnu')
-        const bindingPackageVersion = require('adbc-node-linux-s390x-gnu/package.json').version
+        const binding = require('adbc-driver-manager-linux-s390x-gnu')
+        const bindingPackageVersion = require('adbc-driver-manager-linux-s390x-gnu/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -469,13 +469,13 @@ function requireNative() {
   } else if (process.platform === 'openharmony') {
     if (process.arch === 'arm64') {
       try {
-        return require('./adbc-node.openharmony-arm64.node')
+        return require('./adbc-driver-manager.openharmony-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-openharmony-arm64')
-        const bindingPackageVersion = require('adbc-node-openharmony-arm64/package.json').version
+        const binding = require('adbc-driver-manager-openharmony-arm64')
+        const bindingPackageVersion = require('adbc-driver-manager-openharmony-arm64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -485,13 +485,13 @@ function requireNative() {
       }
     } else if (process.arch === 'x64') {
       try {
-        return require('./adbc-node.openharmony-x64.node')
+        return require('./adbc-driver-manager.openharmony-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-openharmony-x64')
-        const bindingPackageVersion = require('adbc-node-openharmony-x64/package.json').version
+        const binding = require('adbc-driver-manager-openharmony-x64')
+        const bindingPackageVersion = require('adbc-driver-manager-openharmony-x64/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -501,13 +501,13 @@ function requireNative() {
       }
     } else if (process.arch === 'arm') {
       try {
-        return require('./adbc-node.openharmony-arm.node')
+        return require('./adbc-driver-manager.openharmony-arm.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        const binding = require('adbc-node-openharmony-arm')
-        const bindingPackageVersion = require('adbc-node-openharmony-arm/package.json').version
+        const binding = require('adbc-driver-manager-openharmony-arm')
+        const bindingPackageVersion = require('adbc-driver-manager-openharmony-arm/package.json').version
         if (bindingPackageVersion !== '0.0.1' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
           throw new Error(`Native binding package version mismatch, expected 0.0.1 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
         }
@@ -529,7 +529,7 @@ if (!nativeBinding || process.env.NAPI_RS_FORCE_WASI) {
   let wasiBinding = null
   let wasiBindingError = null
   try {
-    wasiBinding = require('./adbc-node.wasi.cjs')
+    wasiBinding = require('./adbc-driver-manager.wasi.cjs')
     nativeBinding = wasiBinding
   } catch (err) {
     if (process.env.NAPI_RS_FORCE_WASI) {
@@ -538,7 +538,7 @@ if (!nativeBinding || process.env.NAPI_RS_FORCE_WASI) {
   }
   if (!nativeBinding) {
     try {
-      wasiBinding = require('adbc-node-wasm32-wasi')
+      wasiBinding = require('adbc-driver-manager-wasm32-wasi')
       nativeBinding = wasiBinding
     } catch (err) {
       if (process.env.NAPI_RS_FORCE_WASI) {

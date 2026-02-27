@@ -17,6 +17,6 @@
   under the License.
 -->
 
-# `adbc-node-win32-arm64-msvc`
+# `adbc-driver-manager-win32-arm64-msvc`
 
-This is the **aarch64-pc-windows-msvc** binary for `adbc-node`
+This is the **aarch64-pc-windows-msvc** binary for `adbc-driver-manager`

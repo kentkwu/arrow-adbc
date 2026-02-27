@@ -1,9 +1,9 @@
 {
-  "name": "adbc-node",
+  "name": "adbc-driver-manager",
   "version": "0.0.1",
   "description": "Node.js ADBC Driver Manager",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/native/lib/index.js",
+  "types": "dist/native/lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apache/arrow-adbc.git",
@@ -26,7 +26,7 @@
     "browser.js"
   ],
   "napi": {
-    "binaryName": "adbc-node",
+    "binaryName": "adbc-driver-manager",
     "targets": [
       "x86_64-pc-windows-msvc",
       "x86_64-apple-darwin",
@@ -115,11 +115,11 @@
     "apache-arrow": "^21.1.0"
   },
   "optionalDependencies": {
-    "adbc-node-win32-x64-msvc": "0.0.1",
-    "adbc-node-darwin-x64": "0.0.1",
-    "adbc-node-linux-x64-gnu": "0.0.1",
-    "adbc-node-linux-arm64-gnu": "0.0.1",
-    "adbc-node-darwin-arm64": "0.0.1",
-    "adbc-node-win32-arm64-msvc": "0.0.1"
+    "adbc-driver-manager-win32-x64-msvc": "0.0.1",
+    "adbc-driver-manager-darwin-x64": "0.0.1",
+    "adbc-driver-manager-linux-x64-gnu": "0.0.1",
+    "adbc-driver-manager-linux-arm64-gnu": "0.0.1",
+    "adbc-driver-manager-darwin-arm64": "0.0.1",
+    "adbc-driver-manager-win32-arm64-msvc": "0.0.1"
   }
 }

@@ -1,12 +1,12 @@
 {
-  "name": "adbc-node-linux-arm64-gnu",
+  "name": "adbc-driver-manager-linux-arm64-gnu",
   "version": "0.0.1",
   "cpu": [
     "arm64"
   ],
-  "main": "adbc-node.linux-arm64-gnu.node",
+  "main": "adbc-driver-manager.linux-arm64-gnu.node",
   "files": [
-    "adbc-node.linux-arm64-gnu.node"
+    "adbc-driver-manager.linux-arm64-gnu.node"
   ],
   "description": "Node.js ADBC Driver Manager",
   "keywords": [
