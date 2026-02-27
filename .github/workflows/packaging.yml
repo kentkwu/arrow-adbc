@@ -1097,7 +1097,7 @@ jobs:
           popd
 
   node-binaries:
-    name: "Node.js ${{ matrix.settings.target }}"
+    name: "Node.js ${{ matrix.settings.arch }} ${{ matrix.settings.os }}"
     runs-on: ${{ matrix.settings.host }}
     needs:
       - source
@@ -1107,25 +1107,29 @@ jobs:
         settings:
           - host: macos-15-intel
             target: x86_64-apple-darwin
+            arch: amd64
+            os: macOS
             build: npx napi build --platform --release --target x86_64-apple-darwin
           - host: macos-latest
             target: aarch64-apple-darwin
+            arch: arm64
+            os: macOS
             build: npx napi build --platform --release --target aarch64-apple-darwin
           - host: windows-latest
             target: x86_64-pc-windows-msvc
+            arch: amd64
+            os: Windows
             build: npx napi build --platform --release --target x86_64-pc-windows-msvc
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
+            arch: amd64
+            os: Linux
             build: npx napi build --platform --release --target x86_64-unknown-linux-gnu --use-napi-cross
           - host: ubuntu-latest
-            target: x86_64-unknown-linux-musl
-            build: npx napi build --platform --release --target x86_64-unknown-linux-musl --use-napi-cross
-          - host: ubuntu-latest
             target: aarch64-unknown-linux-gnu
+            arch: arm64
+            os: Linux
             build: npx napi build --platform --release --target aarch64-unknown-linux-gnu --use-napi-cross
-          - host: ubuntu-latest
-            target: aarch64-unknown-linux-musl
-            build: npx napi build --platform --release --target aarch64-unknown-linux-musl --use-napi-cross
     steps:
       - uses: actions/download-artifact@v6
         with:
@@ -1140,29 +1144,34 @@ jobs:
           tar xf apache-arrow-adbc-${VERSION}.tar.gz
           mv apache-arrow-adbc-${VERSION} adbc
 
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
           cache-dependency-path: adbc/node/package-lock.json
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
         with:
           toolchain: stable
           targets: ${{ matrix.settings.target }}
 
-      - name: Install dependencies
+      - name: Install Node dependencies
         working-directory: adbc/node
         run: npm install
 
-      - name: Build
+      - name: Build Node.js binaries
         working-directory: adbc/node/native
         run: ${{ matrix.settings.build }}
         shell: bash
 
-      - name: Upload artifact
+      - name: Sign binary (macOS)
+        if: runner.os == 'macOS'
+        working-directory: adbc/node/native
+        run: codesign --sign - *.node
+
+      - name: Upload Node.js binaries
         uses: actions/upload-artifact@v5
         with:
           name: bindings-${{ matrix.settings.target }}
@@ -1189,29 +1198,29 @@ jobs:
           tar xf apache-arrow-adbc-${VERSION}.tar.gz
           mv apache-arrow-adbc-${VERSION} adbc
 
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
           cache-dependency-path: adbc/node/package-lock.json
 
-      - name: Install dependencies
+      - name: Install Node dependencies
         working-directory: adbc/node
         run: npm install
 
-      - name: Build JS
+      - name: Build Node.js JS
         working-directory: adbc/node/native
         run: npm run build:ts
 
-      - name: Download bindings
+      - name: Download Node.js binaries
         uses: actions/download-artifact@v6
         with:
           pattern: bindings-*
-          path: adbc/node/native
+          path: adbc/node/native/artifacts
           merge-multiple: true
 
-      - name: Prepare Artifacts
+      - name: Package Node.js artifacts
         working-directory: adbc/node/native
         run: |
           npx napi artifacts
@@ -1223,7 +1232,7 @@ jobs:
             npm pack "$dir"
           done
 
-      - name: Archive artifacts
+      - name: Upload Node.js packages
         uses: actions/upload-artifact@v5
         with:
           name: node-packages
