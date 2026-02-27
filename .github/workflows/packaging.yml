@@ -1222,14 +1222,15 @@ jobs:
 
       - name: Package Node.js artifacts
         working-directory: adbc/node/native
+        env:
+          HUSKY: "0"
         run: |
           npx napi artifacts
-          npx napi prepublish -t npm
           # Pack the main package
           npm pack
           # Pack the platform-specific packages
           for dir in npm/*; do
-            npm pack "$dir"
+            npm pack "./$dir"
           done
 
       - name: Upload Node.js packages

@@ -1,0 +1,36 @@
+{
+  "name": "adbc-node-win32-x64-msvc",
+  "version": "0.0.1",
+  "cpu": [
+    "x64"
+  ],
+  "main": "adbc-node.win32-x64-msvc.node",
+  "files": [
+    "adbc-node.win32-x64-msvc.node"
+  ],
+  "description": "Node.js ADBC Driver Manager",
+  "keywords": [
+    "napi-rs",
+    "NAPI",
+    "N-API",
+    "Rust",
+    "node-addon",
+    "node-addon-api"
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/arrow-adbc.git",
+    "directory": "node/native"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "os": [
+    "win32"
+  ]
+}
