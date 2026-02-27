@@ -130,8 +130,8 @@ target/
 !/c/subprojects/*.wrap
 
 # Node.js specific ignores
-node/**/node_modules/
-node/**/target/
-node/**/dist/
-node/native/*.node
-node/native/build/
+javascript/**/node_modules/
+javascript/**/target/
+javascript/**/dist/
+javascript/native/*.node
+javascript/native/build/

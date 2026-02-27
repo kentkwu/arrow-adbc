@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -16,36 +15,27 @@
 # specific language governing permissions and limitations
 # under the License.
 
-set -e
+[package]
+authors = [""]
+edition = "2021"
+name = "adbc_node"
+version = "0.1.0"
 
-# Usage: ./node_build.sh <out_dir>
-if [ "$#" -ne 1 ]; then
-  echo "Usage: $0 <out_dir>"
-  exit 1
-fi
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
 
-REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
-OUT_DIR="$1"
+[dependencies]
+napi = "3.0.0"
+napi-derive = "3.0.0"
+adbc_client = { path = "../core" }
+adbc_core = { path = "../../rust/core" }
 
-# 1. Build the C++ Drivers
-echo "=== Building C++ Drivers ==="
-mkdir -p "${OUT_DIR}"
 
-cmake -S "${REPO_ROOT}/c" -B "${OUT_DIR}" \
-  ${ADBC_CMAKE_ARGS} \
-  -DCMAKE_INSTALL_PREFIX="${OUT_DIR}" \
-  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-  -DADBC_DRIVER_SQLITE=ON \
-  -DADBC_BUILD_TESTS=OFF \
-  -DADBC_BUILD_SHARED=ON
 
-cmake --build "${OUT_DIR}" --target install -j
+[build-dependencies]
+napi-build = "2"
 
-# 2. Build Node.js Package
-echo "=== Building Node.js Package ==="
-pushd "${REPO_ROOT}/javascript/native"
-
-npm install
-npm run build
-
-popd
+[profile.release]
+lto = true
+strip = "symbols"

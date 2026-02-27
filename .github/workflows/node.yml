@@ -28,12 +28,12 @@ on:
     branches:
       - main
     paths:
-      - 'node/**'
+      - 'javascript/**'
       - 'rust/**'
       - '.github/workflows/node.yml'
   pull_request:
     paths:
-      - 'node/**'
+      - 'javascript/**'
       - 'rust/**'
       - '.github/workflows/node.yml'
 
@@ -52,19 +52,19 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: node/package-lock.json
+          cache-dependency-path: javascript/native/package-lock.json
       - name: Install Rust
         uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
         with:
           components: clippy, rustfmt
       - name: Install dependencies
-        working-directory: node
+        working-directory: javascript/native
         run: npm install
       - name: Cargo fmt
-        working-directory: node/native
+        working-directory: javascript/native
         run: cargo fmt -- --check
       - name: Clippy
-        working-directory: node/native
+        working-directory: javascript/native
         run: cargo clippy -- -D warnings
 
   build:
@@ -111,28 +111,28 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: node/package-lock.json
+          cache-dependency-path: javascript/native/package-lock.json
       - name: Install Rust
         uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
         with:
           toolchain: stable
           targets: ${{ matrix.settings.target }}
       - name: Install dependencies
-        working-directory: node
+        working-directory: javascript/native
         run: npm install
       - name: Build
-        working-directory: node/native
+        working-directory: javascript/native
         run: ${{ matrix.settings.build }}
         shell: bash
       - name: Ad-hoc sign binary (macOS)
         if: runner.os == 'macOS'
-        working-directory: node/native
+        working-directory: javascript/native
         run: codesign --sign - *.node
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: node/native/*.node
+          path: javascript/native/*.node
           if-no-files-found: error
 
   test:
@@ -155,23 +155,23 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: node/package-lock.json
+          cache-dependency-path: javascript/native/package-lock.json
       - name: Install dependencies
-        working-directory: node
-        run: npm install
+        working-directory: javascript/native
+        run: npm install --omit=optional
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: node/native
+          path: javascript/native
       - name: Build Driver
         # We need to build the SQLite driver for tests.
         # This assumes the host has CMake and C++ compiler.
-        working-directory: node/native
+        working-directory: javascript/native
         run: npm run build:driver
         env:
           # Point to vendored sqlite for reliable build in CI
           ADBC_CMAKE_ARGS: "-DSQLite3_INCLUDE_DIR=${{ github.workspace }}/c/vendor/sqlite3"
       - name: Run Tests
-        working-directory: node/native
+        working-directory: javascript/native
         run: npm test

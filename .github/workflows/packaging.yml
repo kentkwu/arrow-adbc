@@ -1149,7 +1149,7 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: adbc/node/package-lock.json
+          cache-dependency-path: adbc/javascript/native/package-lock.json
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
@@ -1158,24 +1158,24 @@ jobs:
           targets: ${{ matrix.settings.target }}
 
       - name: Install Node dependencies
-        working-directory: adbc/node
+        working-directory: adbc/javascript/native
         run: npm install
 
       - name: Build Node.js binaries
-        working-directory: adbc/node/native
+        working-directory: adbc/javascript/native
         run: ${{ matrix.settings.build }}
         shell: bash
 
       - name: Sign binary (macOS)
         if: runner.os == 'macOS'
-        working-directory: adbc/node/native
+        working-directory: adbc/javascript/native
         run: codesign --sign - *.node
 
       - name: Upload Node.js binaries
         uses: actions/upload-artifact@v5
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: adbc/node/native/*.node
+          path: adbc/javascript/native/*.node
           if-no-files-found: error
 
   node-dist:
@@ -1203,25 +1203,25 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: adbc/node/package-lock.json
+          cache-dependency-path: adbc/javascript/native/package-lock.json
 
       - name: Install Node dependencies
-        working-directory: adbc/node
+        working-directory: adbc/javascript/native
         run: npm install
 
       - name: Build Node.js JS
-        working-directory: adbc/node/native
+        working-directory: adbc/javascript/native
         run: npm run build:ts
 
       - name: Download Node.js binaries
         uses: actions/download-artifact@v6
         with:
           pattern: bindings-*
-          path: adbc/node/native/artifacts
+          path: adbc/javascript/native/artifacts
           merge-multiple: true
 
       - name: Package Node.js artifacts
-        working-directory: adbc/node/native
+        working-directory: adbc/javascript/native
         env:
           HUSKY: "0"
         run: |
@@ -1239,7 +1239,7 @@ jobs:
           name: node-packages
           retention-days: 7
           path: |
-            adbc/node/native/*.tgz
+            adbc/javascript/native/*.tgz
 
   release:
     name: "Create release"
