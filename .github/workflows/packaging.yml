@@ -416,7 +416,7 @@ jobs:
           mv apache-arrow-adbc-$VERSION.tar.gz adbc/ci/linux-packages/
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@6ca151fd1bfcfd6fe0c4eb6837eb0584d0134a0c  # v1.290.0
+        uses: ruby/setup-ruby@6ca151fd1bfcfd6fe0c4eb6837eb0584d0134a0c # v1.290.0
         with:
           ruby-version: ruby
 
@@ -428,7 +428,7 @@ jobs:
           restore-keys: linux-${{ env.TASK_NAMESPACE }}-ccache-${{ matrix.target }}-
 
       - name: Login to GitHub Container registry
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2  # v4.0.0
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -593,7 +593,7 @@ jobs:
           echo "schedule: ${{ github.event.schedule }}" >> $GITHUB_STEP_SUMMARY
           echo "ref: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
 
-      - uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167  # v3.3.0
+      - uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167 # v3.3.0
         with:
           miniforge-version: latest
           use-only-tar-bz2: false
@@ -1132,7 +1132,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: adbc/javascript/package-lock.json
 
       - name: Setup Rust
@@ -1186,7 +1186,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: adbc/javascript/package-lock.json
 
       - name: Setup Rust
@@ -1229,7 +1229,6 @@ jobs:
           retention-days: 7
           path: |
             adbc/javascript/*.tgz
-
 
   release:
     name: "Create release"
@@ -1313,7 +1312,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           path: conda-packages
-      - uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167  # v3.3.0
+      - uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167 # v3.3.0
         with:
           miniforge-version: latest
           use-only-tar-bz2: false
@@ -1347,7 +1346,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: "3.13"
       - name: Clean
         run: |
           pip install requests
@@ -1399,6 +1398,5 @@ jobs:
           ./ci/scripts/node_npm_upload.sh upload-staging
         env:
           GEMFURY_PUSH_TOKEN: ${{ secrets.GEMFURY_PUSH_TOKEN }}
-          NPM_REGISTRY: https://npm.fury.io/arrow-adbc-nightlies/
+          NPM_REGISTRY: https://npm.fury.io/kentkwu/
           NPM_TOKEN: ${{ secrets.GEMFURY_PUSH_TOKEN }}
-
