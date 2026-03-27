@@ -53,15 +53,27 @@ main() {
     trap "rm -f ${npmrc}" EXIT
     echo "//${registry_key#*://}/:_authToken=${NPM_TOKEN}" > "${npmrc}"
 
+    local packages=()
+
     # Publish platform-specific packages first, then the main package
     for pkg in "${packages_dir}"/apache-arrow-adbc-driver-manager-*-*.tgz; do
         echo "==== Publishing ${pkg}"
         npm publish "${pkg}" --access public --registry "${registry}" --userconfig "${npmrc}" ${tag_flag} ${dry_run_flag}
+        packages+=("${pkg}")
     done
 
     echo "==== Publishing main package"
-    npm publish "${packages_dir}"/apache-arrow-adbc-driver-manager-[0-9]*.tgz \
-        --access public --registry "${registry}" --userconfig "${npmrc}" ${tag_flag} ${dry_run_flag}
+    local main_pkg="${packages_dir}"/apache-arrow-adbc-driver-manager-[0-9]*.tgz
+    npm publish "${main_pkg}" --access public --registry "${registry}" --userconfig "${npmrc}" ${tag_flag} ${dry_run_flag}
+    packages+=("${main_pkg}")
+
+    # Set access to public again after publish — Gemfury ignores the --access flag on publish
+    echo "==== Setting packages to public"
+    for pkg in "${packages[@]}"; do
+        local pkg_name
+        pkg_name=$(tar -xzf "${pkg}" -O package/package.json | python3 -c 'import sys,json; print(json.load(sys.stdin)["name"])')
+        npm access public "${pkg_name}" --registry "${registry}" --userconfig "${npmrc}"
+    done
 }
 
 main "$@"
